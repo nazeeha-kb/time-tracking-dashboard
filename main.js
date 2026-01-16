@@ -79,29 +79,57 @@ fetch("/data.json")
 
 // Handling Toggle
 const handleToggle = (e) => {
+  const dailyView = document.querySelectorAll("#daily");
+  const weeklyView = document.querySelectorAll("#weekly");
+  const monthlyView = document.querySelectorAll("#monthly");
+
   if (e.target == dailyToggle) {
-    // checking the visibily
+    // checking the visibily - the first section is visible
     let visiblity = daily.dataset.visible;
     // updating the `data-visible` attribute
     if (visiblity == "false") {
-      daily.dataset.visible = "true";
-      weekly.dataset.visible = "false";
-      monthly.dataset.visible = "false";
+      dailyView.forEach((d) => {
+        d.dataset.visible = "true";
+      });
+
+      weeklyView.forEach((w) => {
+        w.dataset.visible = "false";
+      });
+
+      monthlyView.forEach((m) => {
+        m.dataset.visible = "false";
+      });
     }
   } else if (e.target == weeklyToggle) {
     let visiblity = weekly.dataset.visible;
     if (visiblity == "false") {
-      daily.dataset.visible = "false";
-      weekly.dataset.visible = "true";
-      monthly.dataset.visible = "false";
+      dailyView.forEach((d) => {
+        d.dataset.visible = "false";
+      });
+
+      weeklyView.forEach((w) => {
+        w.dataset.visible = "true";
+      });
+
+      monthlyView.forEach((m) => {
+        m.dataset.visible = "false";
+      });
     }
   } else {
     // let displayMonthly = e.target
     let visiblity = monthly.dataset.visible;
     if (visiblity == "false") {
-      daily.dataset.visible = "false";
-      weekly.dataset.visible = "false";
-      monthly.dataset.visible = "true";
+      dailyView.forEach((d) => {
+        d.dataset.visible = "false";
+      });
+
+      weeklyView.forEach((w) => {
+        w.dataset.visible = "false";
+      });
+
+      monthlyView.forEach((m) => {
+        m.dataset.visible = "true";
+      });
     }
   }
 };
