@@ -1,7 +1,7 @@
 // Navigation - toggles
-daily = document.getElementById("toggle-daily");
-weekly = document.getElementById("toggle-weekly");
-monthly = document.getElementById("toggle-monthly");
+dailyToggle = document.getElementById("toggle-daily");
+weeklyToggle = document.getElementById("toggle-weekly");
+monthlyToggle = document.getElementById("toggle-monthly");
 // header and track
 container = document.getElementById("container");
 
@@ -10,8 +10,10 @@ container = document.getElementById("container");
 const appendItem = (item) => {
   // add markup for each item to the DOM
 
+  const section = document.createElement("section");
+
   // Header
-  const header = document.createElement("section");
+  const header = document.createElement("header");
   // Heading - work, play, etc
   const heading = document.createElement("h2");
   heading.innerHTML = `${item?.title}`;
@@ -22,29 +24,36 @@ const appendItem = (item) => {
   header.appendChild(dots);
 
   //   Track
-  const track = document.createElement("section");
+  const track = document.createElement("div");
   // Time frames
 
   // Daily
   const daily = document.createElement("div");
+  daily.setAttribute("id", "daily");
+  daily.setAttribute("data-visible", "false");
   daily.innerHTML = `<time datetime="PT${item?.timeframes?.daily?.current}H">${item?.timeframes?.daily?.current}hrs</time>
   <p>Yesterday  - <time datetime="PT${item?.timeframes?.daily?.previous}H">${item?.timeframes?.daily?.previous}hrs</time></p>`;
   track.appendChild(daily);
 
   // Weekly
   const weekly = document.createElement("div");
+  weekly.setAttribute("id", "weekly");
+  weekly.setAttribute("data-visible", "true");
   weekly.innerHTML = `<time datetime="PT${item?.timeframes?.weekly?.current}H">${item?.timeframes?.weekly?.current}hrs</time>
-  <p>Yesterday  - <time datetime="PT${item?.timeframes?.weekly?.previous}H">${item?.timeframes?.weekly?.previous}hrs</time></p>`;
+  <p>Last Week  - <time datetime="PT${item?.timeframes?.weekly?.previous}H">${item?.timeframes?.weekly?.previous}hrs</time></p>`;
   track.appendChild(weekly);
 
   // Monthly
   const monthly = document.createElement("div");
+  monthly.setAttribute("id", "monthly");
+  monthly.setAttribute("data-visible", "false");
   monthly.innerHTML = `<time datetime="PT${item?.timeframes?.monthly?.current}H">${item?.timeframes?.monthly?.current}hrs</time>
-  <p>Yesterday  - <time datetime="PT${item?.timeframes?.monthly?.previous}H">${item?.timeframes?.monthly?.previous}hrs</time></p>`;
+  <p>Last Month  - <time datetime="PT${item?.timeframes?.monthly?.previous}H">${item?.timeframes?.monthly?.previous}hrs</time></p>`;
   track.appendChild(monthly);
 
-  container.appendChild(header);
-  container.appendChild(track);
+  section.appendChild(header);
+  section.appendChild(track);
+  container.appendChild(section);
 };
 
 // Append data to DOMwhat
@@ -67,3 +76,32 @@ fetch("/data.json")
   .then((data) => {
     populateDOM(data);
   });
+
+// Handling Toggle
+const handleToggle = (e) => {
+  if (e.target == dailyToggle) {
+    // checking the visibily
+    let visiblity = daily.dataset.visible;
+    // updating the `data-visible` attribute
+    if (visiblity == "false") {
+      daily.dataset.visible = "true";
+      weekly.dataset.visible = "false";
+      monthly.dataset.visible = "false";
+    }
+  } else if (e.target == weeklyToggle) {
+    let visiblity = weekly.dataset.visible;
+    if (visiblity == "false") {
+      daily.dataset.visible = "false";
+      weekly.dataset.visible = "true";
+      monthly.dataset.visible = "false";
+    }
+  } else {
+    // let displayMonthly = e.target
+    let visiblity = monthly.dataset.visible;
+    if (visiblity == "false") {
+      daily.dataset.visible = "false";
+      weekly.dataset.visible = "false";
+      monthly.dataset.visible = "true";
+    }
+  }
+};
