@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -36,40 +36,51 @@
       }
     </style>
   </head>
-  <body>
-    <main class="p-10">
+  <body
+    class="bg-navy-950 min-h-screen text-white rubik-400 flex flex-col justify-center items-center pt-15"
+  >
+    <main
+      class="p-6 flex flex-col md:gap-6 md:flex-row md:min-h-110 min-h-160 min-w-90 md:w-[clamp(47.5rem,8.636rem+81.82vw,70rem)] md:space-y-0 space-y-5"
+    >
       <!-- Profile & Navigation -->
-      <article class="outline h-fit w-fit">
-        <section id="profile">
+      <article class="bg-navy-900 rounded-2xl">
+        <section
+          id="profile"
+          class="bg-cust-purple-600 rounded-2xl flex flex-row gap-4 md:flex-col px-5 py-8 md:pb-15 md:pt-12"
+        >
           <div>
             <img
               src="images/image-jeremy.png"
               alt="Profile Picture of Jeremy Robson"
+              class="shrink-0 border-3 border-white rounded-full size-16"
             />
           </div>
           <div>
-            <small>Report for</small>
-            <h1>Jeremy Robson</h1>
+            <small class="text-navy-200">Report for</small>
+            <h1 class="lg:text-4xl text-2xl rubik-300">Jeremy Robson</h1>
           </div>
         </section>
-        <nav id="navigation">
+        <nav
+          id="navigation"
+          class="flex flex-row md:flex-col md:gap-4 justify-between rubik-400 px-8 py-5"
+        >
           <div
             id="toggle-daily"
-            class="cursor-pointer"
+            class="cursor-pointer hover:text-white"
             onclick="handleToggle(event)"
           >
             Daily
           </div>
           <div
             id="toggle-weekly"
-            class="cursor-pointer"
+            class="cursor-pointer hover:text-white"
             onclick="handleToggle(event)"
           >
             Weekly
           </div>
           <div
             id="toggle-monthly"
-            class="cursor-pointer"
+            class="cursor-pointer hover:text-white"
             onclick="handleToggle(event)"
           >
             Monthly
@@ -78,7 +89,10 @@
       </article>
 
       <!-- Work -->
-      <article id="container" class="outline h-fit w-fit"></article>
+      <article
+        id="container"
+        class="grid md:grid-rows-2 md:grid-cols-3 grid-rows-1 gap-6 w-full"
+      ></article>
     </main>
 
     <!-- <div class="attribution">

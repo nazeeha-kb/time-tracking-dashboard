@@ -25,17 +25,18 @@
   /* Primary */
   --color-cust-purple-600: hsl(246, 80%, 60%);
 
-  --color-purple-socia: hsl(264, 64%, 52%);
-  --color-orange-work: hsl(15, 100%, 70%);
-  --color-blue-play: hsl(195, 74%, 62%);
-  --color-pink-study: hsl(348, 100%, 68%);
-  --color-green-exercise: hsl(145, 58%, 55%);
-  --color-yellow-selfCare: hsl(43, 84%, 65%);
+  --color-social: hsl(264, 64%, 52%);
+  --color-work: hsl(15, 100%, 70%);
+  --color-play: hsl(195, 74%, 62%);
+  --color-study: hsl(348, 100%, 68%);
+  --color-exercise: hsl(145, 58%, 55%);
+  --color-self-care: hsl(43, 84%, 65%);
 
   /* Neutral */
   --color-cust-purple-500: hsl(235, 45%, 61%);
   --color-navy-950: hsl(226, 43%, 10%);
   --color-navy-900: hsl(235, 46%, 20%);
+  --color-navy-500: hsl(235, 46%, 38%);
   --color-navy-200: hsl(236, 100%, 87%);
 
   /* Typography */
@@ -48,3 +49,69 @@
   --breakpoint-desktop: 1440px;
 }
 
+/* different border colors for each sections */
+
+@layer utilities {
+  .bg-social {
+    @apply bg-social;
+  }
+  .bg-work {
+    @apply bg-work;
+  }
+  .bg-play {
+    @apply bg-play;
+  }
+  .bg-study {
+    @apply bg-study;
+  }
+  .bg-exercise {
+    @apply bg-exercise;
+  }
+  .bg-self-care {
+    @apply bg-self-care;
+  }
+}
+
+/* Display is hidden when not toggled */
+
+#weekly[data-visible="false"],
+#daily[data-visible="false"],
+#monthly[data-visible="false"] {
+  display: none;
+}
+
+/* parent of track container */
+.track-parent {
+  @apply md:pt-10 pt-8 rounded-2xl;
+}
+
+/* Container */
+.track-container {
+  @apply bg-navy-900 rounded-2xl md:p-6 md:py-8 sm:p-8 p-6 h-full md:space-y-4 space-y-1 hover:cursor-pointer hover:bg-navy-500 has-[.dots:hover]:bg-navy-900;
+}
+
+/* header */
+.header {
+  @apply flex justify-between items-center;
+}
+
+.dots {
+  @apply cursor-pointer text-navy-200 text-xl;
+}
+
+/* track */
+#weekly[data-visible="true"],
+#daily[data-visible="true"],
+#monthly[data-visible="true"] {
+  @apply flex flex-row md:flex-col;
+}
+
+.track-content {
+  @apply flex md:gap-3 justify-between md:items-start items-center;
+}
+
+.icon-bg {
+  background-image: var(--bg-image);
+  background-position: top right 2rem;
+  background-repeat: no-repeat;
+}
